@@ -11,7 +11,6 @@ public class LoginCtrl {
     
     public LoginCtrl() {
         loginFrm = new LoginFrm();
-        menuUsuarioCtrl = new MenuUsuarioCtrl();
         
         loginFrm.getBtnEntrar().addMouseListener(new MouseAdapter() {
             @Override
@@ -22,7 +21,9 @@ public class LoginCtrl {
     }
     
     private void validarIngreso() {
+        menuUsuarioCtrl = new MenuUsuarioCtrl();
         menuUsuarioCtrl.init();
+        loginFrm.dispose();
     }
 
     public LoginFrm getLoginFrm() {
