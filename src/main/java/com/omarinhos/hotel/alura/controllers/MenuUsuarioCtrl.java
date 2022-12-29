@@ -17,8 +17,8 @@ public class MenuUsuarioCtrl {
         menuUsuarioFrm = new MenuUsuarioFrm();
         
         String fechaHoy = ZonedDateTime.now()
-                .format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
-        menuUsuarioFrm.getTxtFechaHoy().setText(fechaHoy);
+                .format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        menuUsuarioFrm.getTxtFechaHoy().setText("Hoy es " + fechaHoy);
         
         menuUsuarioFrm.getBtnRegistroReservas().addMouseListener(new MouseAdapter() {
             @Override

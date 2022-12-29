@@ -196,7 +196,7 @@ public class RegistroReservasFrm extends javax.swing.JFrame {
         jSeparator2.setForeground(new java.awt.Color(102, 204, 255));
         jPanel3.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 350, 330, 10));
 
-        cmbFormaPago.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tarjeta de Crédito", "Dinero en Efectivo" }));
+        cmbFormaPago.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tarjeta de Crédito", "Tarjeta de Débito", "Dinero en Efectivo" }));
         jPanel3.add(cmbFormaPago, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 420, 330, 30));
 
         jSeparator4.setForeground(new java.awt.Color(102, 204, 255));
