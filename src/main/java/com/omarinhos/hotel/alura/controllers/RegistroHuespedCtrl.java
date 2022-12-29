@@ -7,7 +7,7 @@ import java.awt.event.MouseEvent;
 public class RegistroHuespedCtrl {
 
     private final RegistroHuespedFrm registroHuespedFrm;
-    MenuUsuarioCtrl menuUsuarioCtrl;
+    RegistroReservasCtrl registroReservasCtrl;
     
     public RegistroHuespedCtrl() {
         registroHuespedFrm = new RegistroHuespedFrm();
@@ -15,8 +15,8 @@ public class RegistroHuespedCtrl {
         registroHuespedFrm.getBtnAtras().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                menuUsuarioCtrl = new MenuUsuarioCtrl();
-                menuUsuarioCtrl.init();
+                registroReservasCtrl = new RegistroReservasCtrl();
+                registroReservasCtrl.init();
                 registroHuespedFrm.dispose();
             }
             

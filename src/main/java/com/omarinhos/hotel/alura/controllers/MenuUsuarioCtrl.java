@@ -9,7 +9,7 @@ import java.time.format.DateTimeFormatter;
 public class MenuUsuarioCtrl {
     
     private final MenuUsuarioFrm menuUsuarioFrm;
-    RegistroHuespedCtrl registroHuespedCtrl;
+    RegistroReservasCtrl registroReservasCtrl;
     
     public MenuUsuarioCtrl() {
         menuUsuarioFrm = new MenuUsuarioFrm();
@@ -21,8 +21,8 @@ public class MenuUsuarioCtrl {
         menuUsuarioFrm.getBtnRegistroReservas().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                registroHuespedCtrl = new RegistroHuespedCtrl();
-                registroHuespedCtrl.init();
+                registroReservasCtrl = new RegistroReservasCtrl();
+                registroReservasCtrl.init();
                 menuUsuarioFrm.dispose();
                 
             }
