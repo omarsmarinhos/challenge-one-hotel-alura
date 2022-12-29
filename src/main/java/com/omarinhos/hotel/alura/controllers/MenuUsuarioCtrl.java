@@ -10,6 +10,8 @@ public class MenuUsuarioCtrl {
     
     private final MenuUsuarioFrm menuUsuarioFrm;
     RegistroReservasCtrl registroReservasCtrl;
+    BusquedaCtrl busquedaCtrl;
+    
     
     public MenuUsuarioCtrl() {
         menuUsuarioFrm = new MenuUsuarioFrm();
@@ -31,7 +33,9 @@ public class MenuUsuarioCtrl {
         menuUsuarioFrm.getBtnBusqueda().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                
+                busquedaCtrl = new BusquedaCtrl();
+                busquedaCtrl.init();
+                menuUsuarioFrm.dispose();
             }
         });
     }

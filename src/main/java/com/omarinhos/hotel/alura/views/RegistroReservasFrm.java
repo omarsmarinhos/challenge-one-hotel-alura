@@ -196,7 +196,7 @@ public class RegistroReservasFrm extends javax.swing.JFrame {
         jSeparator2.setForeground(new java.awt.Color(102, 204, 255));
         jPanel3.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 350, 330, 10));
 
-        cmbFormaPago.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tarjeta de Crédito", "Efectivo" }));
+        cmbFormaPago.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tarjeta de Crédito", "Dinero en Efectivo" }));
         jPanel3.add(cmbFormaPago, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 420, 330, 30));
 
         jSeparator4.setForeground(new java.awt.Color(102, 204, 255));
@@ -207,7 +207,7 @@ public class RegistroReservasFrm extends javax.swing.JFrame {
         btnSiguiente.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnSiguiente.setForeground(new java.awt.Color(255, 255, 255));
         btnSiguiente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btnSiguiente.setText("SIGUINTE");
+        btnSiguiente.setText("SIGUIENTE");
         btnSiguiente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
@@ -245,6 +245,7 @@ public class RegistroReservasFrm extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void headMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_headMouseDragged
