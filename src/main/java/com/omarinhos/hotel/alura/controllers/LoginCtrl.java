@@ -44,7 +44,8 @@ public class LoginCtrl {
                     , "Usuario no válido", JOptionPane.ERROR_MESSAGE);
             return;
         }
-
+        JOptionPane.showMessageDialog(loginFrm, "Bienvenido " + user.getUser() ,
+                "Login", JOptionPane.INFORMATION_MESSAGE);
         menuUsuarioCtrl = new MenuUsuarioCtrl();
         menuUsuarioCtrl.init();
         loginFrm.dispose();

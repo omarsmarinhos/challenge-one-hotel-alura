@@ -78,6 +78,8 @@ public class RegistroReservasCtrl {
 
         service.crearReserva(reserva);
         int idReserva = service.lastId();
+        JOptionPane.showMessageDialog(registroReservasFrm, "La reserva ha sido creada con éxito.",
+                "Reserva", JOptionPane.INFORMATION_MESSAGE);
         registroHuespedCtrl = new RegistroHuespedCtrl(idReserva);
         registroHuespedCtrl.init();
         registroReservasFrm.dispose();

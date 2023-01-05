@@ -26,7 +26,7 @@ public class HuespedRepositoryImpl implements IRepository<Huesped>{
             stmt.setString(2, h.getApellido());
             stmt.setString(3, h.getFechaNacimiento());
             stmt.setString(4, h.getNacionalidad());
-            stmt.setString(5, h.getNacionalidad());
+            stmt.setString(5, h.getTelefono());
             stmt.setInt(6, h.getReserva().getId());
 
             stmt.executeUpdate();
@@ -62,7 +62,7 @@ public class HuespedRepositoryImpl implements IRepository<Huesped>{
             stmt.setString(2, h.getApellido());
             stmt.setString(3, h.getFechaNacimiento());
             stmt.setString(4, h.getNacionalidad());
-            stmt.setString(5, h.getNacionalidad());
+            stmt.setString(5, h.getTelefono());
             stmt.setInt(6, h.getReserva().getId());
             stmt.setInt(7, h.getId());
 
