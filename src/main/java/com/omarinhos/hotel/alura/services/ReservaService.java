@@ -37,12 +37,8 @@ public class ReservaService {
         }
     }
     
-    public void elimiarReserva(int id) {
-        try {
-            repository.delete(id);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+    public void eliminarReserva(int id) throws SQLException{
+        repository.delete(id);
     }
     
     public Reserva getReservaPor(String id) {

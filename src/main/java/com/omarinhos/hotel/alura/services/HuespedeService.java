@@ -37,12 +37,8 @@ public class HuespedeService {
         }
     }
     
-    public void eliminarHuesped(int id) {
-        try {
+    public void eliminarHuesped(int id) throws SQLException{
             repository.delete(id);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
     }
     
     public Huesped getHuespedPor(String apellido) {

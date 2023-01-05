@@ -1,5 +1,6 @@
 package com.omarinhos.hotel.alura.controllers;
 
+import com.mysql.cj.exceptions.CJOperationNotSupportedException;
 import com.omarinhos.hotel.alura.models.Huesped;
 import com.omarinhos.hotel.alura.models.Reserva;
 import com.omarinhos.hotel.alura.repositories.HuespedRepositoryImpl;
@@ -14,6 +15,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.SQLException;
 import java.util.List;
 
 public class BusquedaCtrl {
@@ -73,7 +75,11 @@ public class BusquedaCtrl {
         busquedaFrm.getBtnEditar().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                
+                if (busquedaFrm.getTabbedPanel().getSelectedIndex() == 0) {
+                    eliminarHuesped();
+                } else {
+                    eliminarReserva();
+                }
             }
             
         });
@@ -81,10 +87,46 @@ public class BusquedaCtrl {
         busquedaFrm.getBtnEliminar().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                
+                if (busquedaFrm.getTabbedPanel().getSelectedIndex() == 0) {
+                    eliminarHuesped();
+                } else {
+                    eliminarReserva();
+                }
             }
-            
         });
+    }
+
+    private void eliminarReserva() {
+        int x, id;
+        x = busquedaFrm.getTblReservas().getSelectedRow();
+        if (x >= 0) {
+            x = busquedaFrm.getTblReservas().getSelectedRow();
+            id = reservas.get(x).getId();
+            try {
+                reservaService.eliminarReserva(id);
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(busquedaFrm,
+                        "Debe eliminar a los huéspedes de esta reserva primero.",
+                        "Advertencia", JOptionPane.ERROR_MESSAGE);
+            }
+            reservas = reservaService.getReservas();
+            actualizarTablaReservas();
+        }
+    }
+    private void eliminarHuesped() {
+        int x;
+        int id;
+        x = busquedaFrm.getTblHuespedes().getSelectedRow();
+        if (x >= 0) {
+            id = huespedes.get(x).getId();
+            try {
+                huespedeService.eliminarHuesped(id);
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(busquedaFrm, "Error");
+            }
+            huespedes = huespedeService.getHuespedes();
+            actualizarTablaHuespedes();
+        }
     }
 
     private void buscarReserva(String buscador) {
