@@ -1,9 +1,6 @@
 package com.omarinhos.hotel.alura.views;
 
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-import javax.swing.JTable;
-import javax.swing.JTextField;
+import javax.swing.*;
 
 public class BusquedaFrm extends javax.swing.JFrame {
 
@@ -38,8 +35,10 @@ public class BusquedaFrm extends javax.swing.JFrame {
     public JTextField getTxtBuscar() {
         return txtBuscar;
     }
-    
-    
+
+    public JTabbedPane getTabbedPanel() {
+        return jTabbedPane1;
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
