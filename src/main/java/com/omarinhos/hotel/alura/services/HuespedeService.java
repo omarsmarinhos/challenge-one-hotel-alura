@@ -52,5 +52,13 @@ public class HuespedeService {
             throw new RuntimeException(e);
         }
     }
+
+    public int lastId() {
+        try {
+            return repository.lastId();
+        } catch (SQLException e) {
+            throw new RuntimeException();
+        }
+    }
     
 }

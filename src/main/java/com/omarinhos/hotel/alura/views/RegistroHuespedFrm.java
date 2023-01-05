@@ -13,6 +13,7 @@ public class RegistroHuespedFrm extends javax.swing.JFrame {
         initComponents();
         jDateChooser.getCalendarButton().setBackground(new Color(102, 153, 255));
         jDateChooser.getCalendarButton().setIcon(new ImageIcon("imagenes/reservado.png"));
+        txtNumeroReserva.setEditable(false);
     }
 
     public JLabel getBtnAtras() {

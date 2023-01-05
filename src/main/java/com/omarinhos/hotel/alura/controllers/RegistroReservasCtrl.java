@@ -7,13 +7,9 @@ import com.omarinhos.hotel.alura.services.ReservaService;
 import com.omarinhos.hotel.alura.views.RegistroReservasFrm;
 
 import javax.swing.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
 
 import static java.time.temporal.ChronoUnit.DAYS;
 
@@ -26,6 +22,7 @@ public class RegistroReservasCtrl {
     ReservaService service = new ReservaService(repository);
     private final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
     private final double VALOR_DIARIO_FIJO = 50;
+    private double valorFinal = 0;
 
     public RegistroReservasCtrl() {
         registroReservasFrm = new RegistroReservasFrm();
@@ -49,7 +46,15 @@ public class RegistroReservasCtrl {
             
         });
 
-        registroReservasFrm.getjDtCheckOut().getJCalendar().
+        registroReservasFrm.getjDtCheckOut().getDateEditor().addPropertyChangeListener(evt -> {
+            if (evt.getPropertyName().equals("date")) {
+                LocalDate dateIn = LocalDate.parse(sdf.format(registroReservasFrm.getjDtCheckIn().getCalendar().getTime()));
+                LocalDate dateOut = LocalDate.parse(sdf.format(registroReservasFrm.getjDtCheckOut().getCalendar().getTime()));
+                long days = DAYS.between(dateIn, dateOut);
+                valorFinal = days * VALOR_DIARIO_FIJO;
+                registroReservasFrm.getTxtValorRerserva().setText("" + valorFinal);
+            }
+        });
     }
     
     private void validarDatos() {
@@ -63,20 +68,17 @@ public class RegistroReservasCtrl {
                     "Campos vacíos", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        LocalDate dateIn = LocalDate.parse(checkIn);
-        LocalDate datOut = LocalDate.parse(checkOut);
-        long days = DAYS.between(dateIn, datOut);
         String formaPago = (String) registroReservasFrm.getCmbFormaPago().getSelectedItem();
 
         Reserva reserva = new Reserva();
         reserva.setFechaEntrada(checkIn);
         reserva.setFechaSalida(checkOut);
-        reserva.setValor(days * VALOR_DIARIO_FIJO);
+        reserva.setValor(valorFinal);
         reserva.setFormaPago(formaPago);
 
         service.crearReserva(reserva);
-
-        registroHuespedCtrl = new RegistroHuespedCtrl();
+        int idReserva = service.lastId();
+        registroHuespedCtrl = new RegistroHuespedCtrl(idReserva);
         registroHuespedCtrl.init();
         registroReservasFrm.dispose();
     }

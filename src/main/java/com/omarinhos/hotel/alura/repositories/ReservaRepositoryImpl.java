@@ -90,6 +90,20 @@ public class ReservaRepositoryImpl implements IRepository<Reserva>{
         return reserva;
     }
 
+    @Override
+    public int lastId() throws SQLException {
+        int id = 0;
+        try (Statement stmt = getConnection().createStatement();
+              ResultSet rs = stmt.executeQuery("select id from reservas order by id desc limit 1")) {
+
+            if (rs.next()) {
+                id = rs.getInt("id");
+            }
+
+        }
+        return id;
+    }
+
     private Reserva crearReserva(ResultSet rs) throws SQLException{
         Reserva reserva = new Reserva();
         reserva.setId(rs.getInt(1));

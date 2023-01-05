@@ -96,6 +96,20 @@ public class HuespedRepositoryImpl implements IRepository<Huesped>{
         return huesped;
     }
 
+    @Override
+    public int lastId() throws SQLException {
+        int id = 0;
+        try (Statement stmt = getConnection().createStatement();
+             ResultSet rs = stmt.executeQuery("select id from huespedes order by id desc limit 1")) {
+
+            if (rs.next()) {
+                id = rs.getInt("id");
+            }
+
+        }
+        return id;
+    }
+
     private Huesped crearHuesped(ResultSet rs) throws SQLException{
         Huesped huesped = new Huesped();
         huesped.setId(rs.getInt(1));

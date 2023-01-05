@@ -10,5 +10,6 @@ public interface IRepository<T> {
     void update(T t) throws SQLException;
     void delete(int id) throws SQLException;
     T findBy(String s) throws SQLException;
+    int lastId() throws SQLException;
     
 }
