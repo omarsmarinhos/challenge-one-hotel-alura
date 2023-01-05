@@ -29,12 +29,8 @@ public class ReservaService {
         }
     }
     
-    public void editarReserva(Reserva reserva) {
-        try {
-            repository.update(reserva);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+    public void editarReserva(Reserva reserva) throws SQLException{
+        repository.update(reserva);
     }
     
     public void eliminarReserva(int id) throws SQLException{

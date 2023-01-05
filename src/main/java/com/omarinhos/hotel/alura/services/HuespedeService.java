@@ -29,12 +29,8 @@ public class HuespedeService {
         }
     }
     
-    public void editarHuesped(Huesped huesped) {
-        try {
-            repository.update(huesped);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+    public void editarHuesped(Huesped huesped) throws SQLException{
+        repository.update(huesped);
     }
     
     public void eliminarHuesped(int id) throws SQLException{

@@ -49,7 +49,7 @@ public class RegistroHuespedCtrl {
     
     private void validarDatos() {
         String nombre = registroHuespedFrm.getTxtNombre().getText();
-        String apellido = registroHuespedFrm.getTxtNombre().getText();
+        String apellido = registroHuespedFrm.getTxtApellido().getText();
         String fecha;
         try {
             fecha = sdf.format(registroHuespedFrm.getjDateChooser().getCalendar().getTime());

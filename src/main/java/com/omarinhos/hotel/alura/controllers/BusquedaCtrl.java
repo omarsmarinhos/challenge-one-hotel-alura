@@ -1,6 +1,5 @@
 package com.omarinhos.hotel.alura.controllers;
 
-import com.mysql.cj.exceptions.CJOperationNotSupportedException;
 import com.omarinhos.hotel.alura.models.Huesped;
 import com.omarinhos.hotel.alura.models.Reserva;
 import com.omarinhos.hotel.alura.repositories.HuespedRepositoryImpl;
@@ -17,6 +16,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Objects;
 
 public class BusquedaCtrl {
     
@@ -76,9 +76,9 @@ public class BusquedaCtrl {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if (busquedaFrm.getTabbedPanel().getSelectedIndex() == 0) {
-                    eliminarHuesped();
+                    editarHuesped();
                 } else {
-                    eliminarReserva();
+                    editarReserva();
                 }
             }
             
@@ -94,6 +94,78 @@ public class BusquedaCtrl {
                 }
             }
         });
+    }
+
+    private void editarReserva() {
+        int x = busquedaFrm.getTblReservas().getSelectedRow();
+        if (x >= 0) {
+            Reserva reserva = new Reserva();
+            if (reservaModelo.getValueAt(x, 0) instanceof String) {
+                System.out.println("string");
+                reserva.setId(Integer.parseInt((String) reservaModelo.getValueAt(x, 0)));
+            } else {
+                System.out.println("integer");
+                reserva.setId( (Integer) reservaModelo.getValueAt(x, 0));
+            }
+            reserva.setFechaEntrada((String) reservaModelo.getValueAt(x, 1));
+            reserva.setFechaSalida((String) reservaModelo.getValueAt(x, 2));
+            if (reservaModelo.getValueAt(x, 3) instanceof String) {
+                reserva.setValor(Double.parseDouble((String) reservaModelo.getValueAt(x, 3)));
+            } else {
+                reserva.setValor( (Double) reservaModelo.getValueAt(x, 3));
+            }
+            reserva.setFormaPago((String) reservaModelo.getValueAt(x, 4));
+            try {
+                reservaService.editarReserva(reserva);
+                JOptionPane.showMessageDialog(busquedaFrm,
+                        "Reserva actualizada",
+                        "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+                reservas = reservaService.getReservas();
+                actualizarTablaReservas();
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(busquedaFrm,
+                        "Datos incorrectos",
+                        "Advertencia", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+
+    }
+
+
+    private void editarHuesped() {
+        int x = busquedaFrm.getTblHuespedes().getSelectedRow();
+        if (x >= 0) {
+            Huesped huesped = new Huesped();
+            Reserva reserva = new Reserva();
+            huesped.setReserva(reserva);
+            if (huespedModelo.getValueAt(x, 0) instanceof String) {
+                huesped.setId(Integer.parseInt( (String) huespedModelo.getValueAt(x, 0)));
+            } else {
+                huesped.setId( (Integer) huespedModelo.getValueAt(x, 0));
+            }
+            huesped.setNombre( (String) huespedModelo.getValueAt(x, 1));
+            huesped.setApellido( (String) huespedModelo.getValueAt(x, 2));
+            huesped.setFechaNacimiento( (String) huespedModelo.getValueAt(x, 3));
+            huesped.setNacionalidad( (String) huespedModelo.getValueAt(x, 4));
+            huesped.setTelefono( (String) huespedModelo.getValueAt(x, 5));
+            if (huespedModelo.getValueAt(x, 6) instanceof String) {
+                huesped.getReserva().setId(Integer.parseInt((String) huespedModelo.getValueAt(x, 6)));
+            } else {
+                huesped.getReserva().setId( (Integer) huespedModelo.getValueAt(x, 6));
+            }
+            try {
+                huespedeService.editarHuesped(huesped);
+                JOptionPane.showMessageDialog(busquedaFrm,
+                        "Huésped actualizado",
+                        "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+                huespedes = huespedeService.getHuespedes();
+                actualizarTablaHuespedes();
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(busquedaFrm,
+                    "Datos incorrectos",
+                    "Advertencia", JOptionPane.ERROR_MESSAGE);
+            }
+        }
     }
 
     private void eliminarReserva() {
