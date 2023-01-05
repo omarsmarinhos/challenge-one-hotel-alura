@@ -7,30 +7,50 @@ import java.util.List;
 
 public class HuespedeService {
     
-    private final IRepository repository;
+    private final IRepository<Huesped> repository;
     
-    public HuespedeService(IRepository repository) {
+    public HuespedeService(IRepository<Huesped> repository) {
         this.repository = repository;
     }
     
-    public void crearHuesped(Huesped huesped) throws SQLException {
-        repository.create(huesped);
+    public void crearHuesped(Huesped huesped) {
+        try {
+            repository.create(huesped);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
     
-    public List<Huesped> getHuespedes() throws SQLException {
-        return repository.read();
+    public List<Huesped> getHuespedes() {
+        try {
+            return repository.read();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
     
-    public void editarHuesped(Huesped huesped) throws SQLException {
-        repository.update(huesped);
+    public void editarHuesped(Huesped huesped) {
+        try {
+            repository.update(huesped);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
     
-    public void elimiarHuesped(int id) throws SQLException {
-        repository.delete(id);
+    public void eliminarHuesped(int id) {
+        try {
+            repository.delete(id);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
     
-    public Huesped getHuespedPor(String apellido) throws SQLException {
-        return (Huesped) repository.findBy(apellido);
+    public Huesped getHuespedPor(String apellido) {
+        try {
+            return repository.findBy(apellido);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
     
 }

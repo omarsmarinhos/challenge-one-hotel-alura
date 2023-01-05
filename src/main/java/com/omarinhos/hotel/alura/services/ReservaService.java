@@ -7,30 +7,50 @@ import java.util.List;
 
 public class ReservaService {
  
-    private final IRepository repository;
+    private final IRepository<Reserva> repository;
     
-    public ReservaService(IRepository repository) {
+    public ReservaService(IRepository<Reserva> repository) {
         this.repository = repository;
     }
     
-    public void crearReserva(Reserva reserva) throws SQLException {
-        repository.create(reserva);
+    public void crearReserva(Reserva reserva) {
+        try {
+            repository.create(reserva);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
     
-    public List<Reserva> getReservas() throws SQLException {
-        return repository.read();
+    public List<Reserva> getReservas() {
+        try {
+            return repository.read();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
     
-    public void editarReserva(Reserva reserva) throws SQLException {
-        repository.update(reserva);
+    public void editarReserva(Reserva reserva) {
+        try {
+            repository.update(reserva);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
     
-    public void elimiarReserva(int id) throws SQLException {
-        repository.delete(id);
+    public void elimiarReserva(int id) {
+        try {
+            repository.delete(id);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
     
-    public Reserva getReservaPor(String id) throws SQLException {
-        return (Reserva) repository.findBy(id);
+    public Reserva getReservaPor(String id) {
+        try {
+            return repository.findBy(id);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
     
 }

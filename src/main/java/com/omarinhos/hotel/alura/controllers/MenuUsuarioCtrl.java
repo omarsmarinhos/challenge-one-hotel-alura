@@ -40,10 +40,6 @@ public class MenuUsuarioCtrl {
         });
     }
     
-    public MenuUsuarioFrm getMenuUsuarioFrm() {
-        return menuUsuarioFrm;
-    }
-    
     public void init() {
         menuUsuarioFrm.setVisible(true);
     }

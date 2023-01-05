@@ -10,15 +10,15 @@ import javax.swing.UnsupportedLookAndFeelException;
 
 public class Main {
 
-    MenuFrm menulFrm = new MenuFrm();
+    MenuFrm menuFrm = new MenuFrm();
     LoginCtrl loginCtrl = new LoginCtrl();
     
     public Main() {
-        menulFrm.getBtnLogin().addMouseListener(new MouseAdapter() {
+        menuFrm.getBtnLogin().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 loginCtrl.init();
-                menulFrm.dispose();
+                menuFrm.dispose();
             }
             
         });
@@ -28,11 +28,11 @@ public class Main {
         try {
             UIManager.setLookAndFeel(new FlatIntelliJLaf());
         } catch (UnsupportedLookAndFeelException ex) {
-            
+            ex.printStackTrace();
         }
 
         java.awt.EventQueue.invokeLater(() -> {
-            new Main().menulFrm.setVisible(true);
+            new Main().menuFrm.setVisible(true);
         });
     }
 }

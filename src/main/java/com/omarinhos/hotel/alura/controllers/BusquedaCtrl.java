@@ -53,9 +53,5 @@ public class BusquedaCtrl {
         busquedaFrm.setVisible(true);
     }
     
-    public BusquedaFrm getBusquedaFrm() {
-        return busquedaFrm;
-    }
-    
-    
+
 }

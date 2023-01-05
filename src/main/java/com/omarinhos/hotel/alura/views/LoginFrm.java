@@ -9,6 +9,8 @@ public class LoginFrm extends javax.swing.JFrame {
 
     public LoginFrm() {
         initComponents();
+        txtUsuario.setText("admin");
+        txtPassword.setText("12345");
     }
 
     public JLabel getBtnEntrar() {

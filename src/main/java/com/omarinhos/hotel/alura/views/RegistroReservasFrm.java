@@ -15,6 +15,7 @@ public class RegistroReservasFrm extends javax.swing.JFrame {
         jDtCheckIn.getCalendarButton().setIcon(new ImageIcon("imagenes/reservado.png"));
         jDtCheckOut.getCalendarButton().setBackground(new Color(102, 153, 255));
         jDtCheckOut.getCalendarButton().setIcon(new ImageIcon("imagenes/reservado.png"));
+        txtValorRerserva.setEditable(false);
     }
 
     public JLabel getBtnAtras() {

@@ -38,10 +38,7 @@ public class RegistroHuespedCtrl {
         registroHuespedFrm.setVisible(true);
     }
     
-    public RegistroHuespedFrm getRegistroHuespedFrm() {
-        return registroHuespedFrm;
-    }
-    
+
     
     
 }
